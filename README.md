@@ -1,0 +1,2 @@
+# logicalhacking-zsh
+
