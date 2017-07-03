@@ -32,3 +32,18 @@ promptpwd() {
     fi
     print "$ret_directory"
 }
+
+
+# Define abstract names for the PowerLine symbols          
+() {
+    local LC_ALL="" LC_CTYPE="en_US.UTF-8"
+    PL_BRANCH=$'\ue0a0'   # 
+    PL_LN=$'\ue0a1'       # 
+    PL_CPADLOCK=$'\ue0a2' # 
+    PL_BRARROW=$'\ue0b0'  # 
+    PL_RARROW=$'\ue0b1'   # 
+    PL_BLARROW=$'\ue0b2'  # 
+    PL_LARRW=$'\ue0b3'    # 
+}
+
+
