@@ -43,7 +43,7 @@ promptpwd() {
     PL_BRARROW=$'\ue0b0'  # 
     PL_RARROW=$'\ue0b1'   # 
     PL_BLARROW=$'\ue0b2'  # 
-    PL_LARRW=$'\ue0b3'    # 
+    PL_LARROW=$'\ue0b3'   # 
 }
 
 # Drawing of segments
