@@ -75,3 +75,9 @@ prompt_end() {
     echo -n "%{%f%}"
     CURRENT_BG=''
 }
+
+# LH Logo
+prompt_logo() {
+    prompt_segment $1 $2 "{*λH*}"
+}
+
