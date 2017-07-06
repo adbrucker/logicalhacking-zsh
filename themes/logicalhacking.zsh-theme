@@ -76,8 +76,30 @@ prompt_end() {
     CURRENT_BG=''
 }
 
-# LH Logo
+# Prompt: LH Logo
 prompt_logo() {
     prompt_segment $1 $2 "{*λH*}"
 }
 
+# Prompt: Isabelle Version
+ISAVERSIONCMD="Isabelle version  | sed -e 's/:.*//' -e 's/Isabelle//'"
+ISAVERSIONDIR="which isabelle | sed -e 's/.*Isabelle//' -e 's/.bin.*//'"
+prompt_isabellenv() {
+    ISADIR=false
+    if [[ -f ROOT || -f ROOTS ]]; then
+        ISARDIR=true
+    else
+        if (){ setopt localoptions nonomatch nocshnullglob; [ -f *.thy([1]) ] }
+        then
+            ISARDIR=true
+        fi
+    fi
+    if [ "ISADIR" = true ]; then
+        prompt_segment $1 $2 "(Isabelle `$ISAVERSION`)"
+    fi
+}
+
+
+# Default configuration
+SEGMENT_SEPARATOR=$PL_BRARROW
+ISAVERSION=$ISAVERSIONDIR
