@@ -100,6 +100,30 @@ prompt_isabellenv() {
 }
 
 
+# Prompt Setup and key bindings
+build_prompt() {
+    RETVAL=$?
+}
+
+build_inactive_prompt() {
+    RETVAL=$?
+}
+
+del-prompt-accept-line() {
+    OLD_PROMPT="$PROMPT"
+    PROMPT=$INACTIVEPROMPT
+    zle reset-prompt
+    PROMPT="$OLD_PROMPT"
+    zle accept-line
+}
+
+zle -N del-prompt-accept-line
+bindkey "^M" del-prompt-accept-line
+
+# Actual prompt definition
+PROMPT='%{%f%b%k%}$(build_prompt) '
+INACTIVEPROMPT='%{%f%b%k%}$(build_inactive_prompt) '
+
 # Default configuration
 SEGMENT_SEPARATOR=$PL_BRARROW
 ISAVERSION=$ISAVERSIONDIR
