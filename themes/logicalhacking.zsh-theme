@@ -103,10 +103,14 @@ prompt_isabellenv() {
 # Prompt Setup and key bindings
 build_prompt() {
     RETVAL=$?
+    prompt_logo $LHORANGE black
+    prompt_end
 }
 
 build_inactive_prompt() {
     RETVAL=$?
+    prompt_logo $LHDARKGRAY white
+    prompt_end
 }
 
 del-prompt-accept-line() {
@@ -127,3 +131,13 @@ INACTIVEPROMPT='%{%f%b%k%}$(build_inactive_prompt) '
 # Default configuration
 SEGMENT_SEPARATOR=$PL_BRARROW
 ISAVERSION=$ISAVERSIONDIR
+
+if [[ "$TERM" =~ ".*256.*" ]]; then
+    LHORANGE="166"
+    LHDARKGRAY="235"
+    LHLLIGHTGRAY="008"
+else
+    LHORANGE="058"
+    LHDARKGRAY="019"
+    LHLLIGHTGRAY="008"
+fi
