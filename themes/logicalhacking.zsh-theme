@@ -89,20 +89,24 @@ prompt_dir() {
 
 
 # Prompt: Isabelle Version
-ISAVERSIONCMD="Isabelle version  | sed -e 's/:.*//' -e 's/Isabelle//'"
-ISAVERSIONDIR="which isabelle | sed -e 's/.*Isabelle//' -e 's/.bin.*//'"
-prompt_isabellenv() {
+isa_version_cmd (){
+    echo `Isabelle version  | sed -e 's/:.*//' -e 's/Isabelle//'`
+}
+isa_version_dir() {
+    echo `which isabelle | sed -e 's/.*Isabelle//' -e 's/.bin.*//'`
+}    
+prompt_isabelle_env() {
     ISADIR=false
     if [[ -f ROOT || -f ROOTS ]]; then
-        ISARDIR=true
+        ISADIR=true
     else
         if (){ setopt localoptions nonomatch nocshnullglob; [ -f *.thy([1]) ] }
         then
-            ISARDIR=true
+            ISADIR=true
         fi
     fi
-    if [ "ISADIR" = true ]; then
-        prompt_segment $1 $2 "(Isabelle `$ISAVERSION`)"
+    if [ "$ISADIR" = true ]; then
+        prompt_segment $1 $2 "(Isabelle $( $ISAVERSION ))"
     fi
 }
 
@@ -112,6 +116,7 @@ build_prompt() {
     RETVAL=$?
     prompt_logo $LHORANGE black
     prompt_dir $LHLIGHTORANGE black
+    prompt_isabelle_env $LHCYAN black
     prompt_end
 }
 
@@ -119,6 +124,7 @@ build_inactive_prompt() {
     RETVAL=$?
     prompt_logo $LHDARKGRAY white
     prompt_dir $LHLIGHTGRAY white
+    prompt_isabelle_env $LHLIGHTGRAY black
     prompt_end 
 }
 
@@ -139,17 +145,19 @@ INACTIVEPROMPT='%{%f%b%k%}$(build_inactive_prompt) '
 
 # Default configuration
 SEGMENT_SEPARATOR=$PL_BRARROW
-ISAVERSION=$ISAVERSIONDIR
+ISAVERSION=isa_version_dir
 
 if [[ "$TERM" =~ ".*256.*" ]]; then
     LHORANGE="166"
     LHLIGHTORANGE="172"
     LHDARKGRAY="235"
     LHLLIGHTGRAY="008"
+    LHCYAN="014"
 else
     LHORANGE="058"
     LHLIGHTORANGE="016"
     LHDARKGRAY="019"
     LHLLIGHTGRAY="008"
+    LHCYAN="014"
 fi
 
