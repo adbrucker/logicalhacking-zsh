@@ -154,7 +154,7 @@ if [[ "$TERM" =~ ".*256.*" ]]; then
     LHLLIGHTGRAY="008"
     LHCYAN="014"
 else
-    LHORANGE="058"
+    LHORANGE="068"
     LHLIGHTORANGE="016"
     LHDARKGRAY="019"
     LHLLIGHTGRAY="008"
