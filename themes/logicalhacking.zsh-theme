@@ -124,7 +124,7 @@ build_inactive_prompt() {
     RETVAL=$?
     prompt_logo $LHDARKGRAY white
     prompt_dir $LHLIGHTGRAY white
-    prompt_isabelle_env $LHLIGHTGRAY black
+    prompt_isabelle_env $LHLIGHTGRAY white
     prompt_end 
 }
 
@@ -151,13 +151,13 @@ if [[ "$TERM" =~ ".*256.*" ]]; then
     LHORANGE="166"
     LHLIGHTORANGE="172"
     LHDARKGRAY="235"
-    LHLLIGHTGRAY="008"
+    LHLIGHTGRAY="008"
     LHCYAN="014"
 else
     LHORANGE="068"
     LHLIGHTORANGE="016"
     LHDARKGRAY="019"
-    LHLLIGHTGRAY="008"
+    LHLIGHTGRAY="008"
     LHCYAN="014"
 fi
 
