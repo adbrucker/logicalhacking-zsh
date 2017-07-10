@@ -81,6 +81,17 @@ prompt_logo() {
     prompt_segment $1 $2 "{*λH*}"
 }
 
+
+prompt_dir() {
+    prompt_segment $1 $2 "$(promptpwd)"
+}
+
+# Prompt: working directory
+prompt_dir() {
+    prompt_segment $1 $2 "$(promptpwd)"
+}
+
+
 # Prompt: Isabelle Version
 ISAVERSIONCMD="Isabelle version  | sed -e 's/:.*//' -e 's/Isabelle//'"
 ISAVERSIONDIR="which isabelle | sed -e 's/.*Isabelle//' -e 's/.bin.*//'"
@@ -104,13 +115,15 @@ prompt_isabellenv() {
 build_prompt() {
     RETVAL=$?
     prompt_logo $LHORANGE black
+    prompt_dir $LHLIGHTORANGE black
     prompt_end
 }
 
 build_inactive_prompt() {
     RETVAL=$?
     prompt_logo $LHDARKGRAY white
-    prompt_end
+    prompt_dir $LHLIGHTGRAY white
+    prompt_end 
 }
 
 del-prompt-accept-line() {
@@ -134,10 +147,13 @@ ISAVERSION=$ISAVERSIONDIR
 
 if [[ "$TERM" =~ ".*256.*" ]]; then
     LHORANGE="166"
+    LHLIGHTORANGE="172"
     LHDARKGRAY="235"
     LHLLIGHTGRAY="008"
 else
     LHORANGE="058"
+    LHLIGHTORANGE="016"
     LHDARKGRAY="019"
     LHLLIGHTGRAY="008"
 fi
+
