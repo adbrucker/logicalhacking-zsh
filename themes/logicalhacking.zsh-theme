@@ -82,10 +82,6 @@ prompt_logo() {
 }
 
 
-prompt_dir() {
-    prompt_segment $1 $2 "$(promptpwd)"
-}
-
 # Prompt: working directory
 prompt_dir() {
     prompt_segment $1 $2 "$(promptpwd)"
