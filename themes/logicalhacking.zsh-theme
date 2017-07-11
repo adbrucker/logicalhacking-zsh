@@ -59,7 +59,7 @@ prompt_segment() {
     if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
         echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
     else
-        echo -n "%{$bg%}%{$fg%} "
+        echo -n "%{$bg%}%{$fg%}$SEGMENT_SEPARATOR_SAME_COLOR"
     fi
     CURRENT_BG=$1
     [[ -n $3 ]] && echo -n $3
@@ -145,6 +145,7 @@ INACTIVEPROMPT='%{%f%b%k%}$(build_inactive_prompt) '
 
 # Default configuration
 SEGMENT_SEPARATOR=$PL_BRARROW
+SEGMENT_SEPARATOR_SAME_COLOR=" $PL_RARROW "
 ISAVERSION=isa_version_dir
 
 if [[ "$TERM" =~ ".*256.*" ]]; then
