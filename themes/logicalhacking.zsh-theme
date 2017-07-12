@@ -118,16 +118,16 @@ prompt_isabelle_env() {
 build_prompt() {
     RETVAL=$?
     prompt_logo $LHORANGE black
-    prompt_dir $LHLIGHTORANGE black
     prompt_isabelle_env $LHCYAN black
+    prompt_dir $LHLIGHTORANGE black
     prompt_end
 }
 
 build_inactive_prompt() {
     RETVAL=$?
     prompt_logo $LHDARKGRAY white
-    prompt_dir $LHLIGHTGRAY white
     prompt_isabelle_env $LHLIGHTGRAY white
+    prompt_dir $LHLIGHTGRAY white
     prompt_end 
 }
 
