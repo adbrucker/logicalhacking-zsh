@@ -156,6 +156,29 @@ prompt_git() {
     fi
 }
 
+# Prompt: Bazar
+prompt_bzr() {
+    (( $+commands[bzr] )) || return
+    if (bzr status >/dev/null 2>&1); then
+        status_mod=`bzr status | head -n1 | grep "modified" | wc -m`
+        status_all=`bzr status | head -n1 | wc -m`
+        revision=`bzr log | head -n2 | tail -n1 | sed 's/^revno: //'`
+        if [[ $status_mod -gt 0 ]] ; then
+            prompt_segment $1 $3
+            echo -n "bzr@"$revision "✚ "
+        else
+            if [[ $status_all -gt 0 ]] ; then
+                prompt_segment $1 $3
+                echo -n "bzr@"$revision
+
+            else
+                prompt_segment $2 $3
+                echo -n "bzr@"$revision
+            fi
+        fi
+    fi
+}
+
 
 
 # Prompt Setup and key bindings
@@ -165,6 +188,7 @@ build_prompt() {
     prompt_isabelle_env $LHCYAN black
     prompt_dir $LHLIGHTORANGE black
     prompt_git $LHYELLOW $LHGREEN black
+    prompt_bzr $LHYELLOW $LHGREEN black
     prompt_end
 }
 
@@ -174,6 +198,7 @@ build_inactive_prompt() {
     prompt_isabelle_env $LHLIGHTGRAY white
     prompt_dir $LHLIGHTGRAY white
     prompt_git $LHDARKGRAY $LHDARKGRAY white
+    prompt_bzr $LHDARKGRAY $LHDARKGRAY white
     prompt_end 
 }
 
