@@ -2,7 +2,7 @@
 # Copyright (C) 2017 Achim D. Brucker, https://www.brucker.ch
 #
 # LogicalHacking Theme 
-# A Agnoster-inspired theme for ZSH
+# An agnoster-inspired theme for ZSH
 #
 # # README
 #
