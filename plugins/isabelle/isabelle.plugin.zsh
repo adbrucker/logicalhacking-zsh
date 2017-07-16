@@ -66,7 +66,14 @@ isabelle-list-sessions() {
         done
         print -l $accum
     fi
-    if [[ -f ROOTS ]]; then
+    if [[ -f "$dir/ROOTS" ]]; then
+        roots="$(<$dir/ROOTS)"
+        roots=$( isabelle-strip-comments "$roots" )
+        roots=("${(f)roots}")
+        for d in $roots; do
+            d="${d//\"/}" #"
+            isabelle-list-sessions "$d"
+        done
     fi
 } 
 
