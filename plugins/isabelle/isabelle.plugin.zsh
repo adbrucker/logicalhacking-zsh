@@ -49,3 +49,24 @@ isabelle-strip-comments() {
         }' `
      echo "$stripped"   
 }
+
+isabelle-list-sessions() {
+    local dir root roots accum
+    [[ -n $1 ]] && dir="$1" || dir="."
+    if [[ -f "$dir/ROOT" ]]; then 
+        root="$(<$dir/ROOT)"
+        root=$( isabelle-strip-comments "$root" )
+        pcre_compile -xms 'session\s+("[^"]*"|\S+)'
+        accum=()
+        pcre_match -b -- $root
+        while [[ $? -eq 0 ]] do
+            b=($=ZPCRE_OP)
+            accum+=${${MATCH//\"/}//session /} #"
+            pcre_match -b -n $b[2] -- $root
+        done
+        print -l $accum
+    fi
+    if [[ -f ROOTS ]]; then
+    fi
+} 
+
