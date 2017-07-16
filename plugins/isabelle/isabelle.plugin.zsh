@@ -72,7 +72,7 @@ isabelle-list-sessions() {
         roots=("${(f)roots}")
         for d in $roots; do
             d="${d//\"/}" #"
-            isabelle-list-sessions "$d"
+            isabelle-list-sessions "$dir/$d"
         done
     fi
 } 
