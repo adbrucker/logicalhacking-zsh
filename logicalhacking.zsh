@@ -25,3 +25,5 @@
 
 basedir=`dirname $0:A`
 source $basedir/plugins/isabelle/isabelle.plugin.zsh
+fpath=($basedir/plugins/isabelle $fpath)
+
