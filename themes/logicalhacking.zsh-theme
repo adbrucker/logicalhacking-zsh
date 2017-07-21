@@ -205,7 +205,7 @@ build_prompt() {
     RETVAL=$?
     prompt_logo $LHORANGE black
     prompt_isabelle_env $LHCYAN black
-    prompt_dir $LHLIGHTORANGE black
+    prompt_dir $LHORANGEMEDIUM black
     prompt_git $LHGOLD $LHGREEN black
     prompt_bzr $LHGOLD $LHGREEN black
     prompt_end
@@ -291,7 +291,7 @@ if [[ "$TERM" =~ ".*256.*" ]]; then
 
 else
     LHORANGE="068"
-    LHLIGHTORANGE="016"
+    LHORANGEMEDIUM="016"
     LHDARKGRAY="019"
     LHLIGHTGRAY="008"
     LHCYAN="014"
