@@ -206,16 +206,16 @@ build_prompt() {
     prompt_logo $LHORANGE $LHBLACK
     prompt_isabelle_env $LHCYAN $LHBLACK
     prompt_dir $LHORANGEMEDIUM $LHBLACK
-    prompt_git $LHGOLD $LHGREEN $LHBLACK
-    prompt_bzr $LHGOLD $LHGREEN $LHBLACK
+    prompt_git $LHGOLDMEDIUM $LHGOLDDARK $LHBLACK
+    prompt_bzr $LHGOLDMEDIUM $LHGOLDDARK $LHBLACK
     prompt_end
 }
 
 build_inactive_prompt() {
     RETVAL=$?
     prompt_logo $LHDARKGRAY $LHWHITE
-    prompt_isabelle_env $LHLIGHTGRAY $LHWHITE
-    prompt_dir $LHLIGHTGRAY $LHWHITE
+    prompt_isabelle_env $LHDARKGRAY $LHWHITE
+    prompt_dir $LHDARKGRAY $LHWHITE
     prompt_git $LHDARKGRAY $LHDARKGRAY $LHWHITE
     prompt_bzr $LHDARKGRAY $LHDARKGRAY $LHWHITE
     prompt_end 
