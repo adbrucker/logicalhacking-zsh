@@ -203,21 +203,21 @@ prompt_bzr() {
 # Prompt Setup and key bindings
 build_prompt() {
     RETVAL=$?
-    prompt_logo $LHORANGE black
-    prompt_isabelle_env $LHCYAN black
-    prompt_dir $LHORANGEMEDIUM black
-    prompt_git $LHGOLD $LHGREEN black
-    prompt_bzr $LHGOLD $LHGREEN black
+    prompt_logo $LHORANGE $LHBLACK
+    prompt_isabelle_env $LHCYAN $LHBLACK
+    prompt_dir $LHORANGEMEDIUM $LHBLACK
+    prompt_git $LHGOLD $LHGREEN $LHBLACK
+    prompt_bzr $LHGOLD $LHGREEN $LHBLACK
     prompt_end
 }
 
 build_inactive_prompt() {
     RETVAL=$?
-    prompt_logo $LHDARKGRAY white
-    prompt_isabelle_env $LHLIGHTGRAY white
-    prompt_dir $LHLIGHTGRAY white
-    prompt_git $LHDARKGRAY $LHDARKGRAY white
-    prompt_bzr $LHDARKGRAY $LHDARKGRAY white
+    prompt_logo $LHDARKGRAY $LHWHITE
+    prompt_isabelle_env $LHLIGHTGRAY $LHWHITE
+    prompt_dir $LHLIGHTGRAY $LHWHITE
+    prompt_git $LHDARKGRAY $LHDARKGRAY $LHWHITE
+    prompt_bzr $LHDARKGRAY $LHDARKGRAY $LHWHITE
     prompt_end 
 }
 
@@ -238,7 +238,7 @@ INACTIVEPROMPT='%{%f%b%k%}$(build_inactive_prompt) '
 
 # Default configuration
 SEGMENT_SEPARATOR=$PL_BRARROW
-SEGMENT_SEPARATOR_SAME_COLOR=" %{$fg[black]%}$PL_RARROW "
+SEGMENT_SEPARATOR_SAME_COLOR=" %{$fg[$LHBLACK]%}$PL_RARROW "
 ISAVERSION=isa_version_dir
 
 if [[ "$TERM" =~ ".*256.*" ]]; then
