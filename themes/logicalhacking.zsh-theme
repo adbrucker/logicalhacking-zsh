@@ -132,7 +132,6 @@ prompt_isabelle_env() {
     fi
 }
 
-# Prompt: git information (branch/detached head, dirty status)
 prompt_git() {
     (( $+commands[git] )) || return
     local PL_BRANCH_CHAR
@@ -140,6 +139,33 @@ prompt_git() {
         local LC_ALL="" LC_CTYPE="en_US.UTF-8"
         PL_BRANCH_CHAR=$'\ue0a0'         # 
     }
+
+    function +vi-git-stash() {
+        local -a stashes
+
+        if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
+            stashes=$(git stash list 2>/dev/null | wc -l)
+            hook_com[misc]+=" (${stashes} stashed)"
+        fi
+    }
+    function +vi-git-st() {
+        local ahead behind remote
+        local -a gitstatus
+        
+        remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
+                       --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+        
+        if [[ -n ${remote} ]] ; then
+            ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
+            (( $ahead )) && gitstatus+=( "${c3}+${ahead}${c2}" )
+            
+            behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+            (( $behind )) && gitstatus+=( "${c4}-${behind}${c2}" )
+            
+            hook_com[branch]="${hook_com[branch]} [${remote} ${(j:/:)gitstatus}]"
+        fi
+    }
+
     local ref dirty mode repo_path
     repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
@@ -156,7 +182,8 @@ prompt_git() {
             mode=" <B>"
         elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
             mode=" >M<"
-        elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
+        elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge"
+                                         || -e "${repo_path}/../.dotest" ]]; then
             mode=" >R>"
         fi
 
@@ -168,12 +195,18 @@ prompt_git() {
         zstyle ':vcs_info:*' check-for-changes true
         zstyle ':vcs_info:*' stagedstr '✚'
         zstyle ':vcs_info:*' unstagedstr '●'
-        zstyle ':vcs_info:*' formats ' %u%c'
-        zstyle ':vcs_info:*' actionformats ' %u%c'
-        vcs_info
-        echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}"
+        # zstyle ':vcs_info:*' formats ' %u%c'
+        # zstyle ':vcs_info:*' actionformats ' %u%c'
+
+         zstyle ':vcs_info:git*' formats " %b%m %u%c"
+         zstyle ':vcs_info:git*' actionformats " %b%m %u%c"
+         zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash
+         vcs_info
+         # echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}"
+         echo -n "$PL_BRANCH_CHAR${vcs_info_msg_0_%% }${mode}"
     fi
 }
+
 
 # Prompt: Bazar
 prompt_bzr() {
