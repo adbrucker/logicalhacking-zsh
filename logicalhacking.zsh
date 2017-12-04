@@ -22,7 +22,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-
+# SPDX-License-Identifier: MIT
+#
 basedir=`dirname $0:A`
 source $basedir/plugins/isabelle/isabelle.plugin.zsh
 fpath=($basedir/plugins/isabelle $fpath)
