@@ -1,4 +1,5 @@
 # logicalhacking-zsh
+
 Varous add-ons for zsh that are useful for members of the [Software Assurance & 
 Security Research Team](https://logicalhacking.com):
 
@@ -8,4 +9,9 @@ Security Research Team](https://logicalhacking.com):
                           Isabelle (command completion and a few helper 
                           functions).
 ## License
-If not otherwise stated, all sub-projects are licensed under a MIT-style license.
+
+If not otherwise stated, all sub-projects are licensed under a MIT-style 
+license.
+
+SPDX-License-Identifier: MIT
+
