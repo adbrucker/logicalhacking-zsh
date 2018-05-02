@@ -19,5 +19,5 @@ SPDX-License-Identifier: MIT
 
 The master git repository for this project is hosted by the [Software
 Assurance & Security Research Team](https://logicalhacking.com) at
-https://git.logicalhacking.com/adbrucker/logicalhacking-zsh
+<https://git.logicalhacking.com/adbrucker/logicalhacking-zsh>.
 
