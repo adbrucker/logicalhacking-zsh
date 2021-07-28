@@ -33,6 +33,64 @@
 # uses changed in 2012, and older versions will display incorrectly,
 # in confusing ways.
 
+if [[ "$TERM" =~ ".*256.*" ]]; then
+    #    0 -  15: System colors (color theme might define up to color 21)
+    #   16 - 231: 6x6x6 color cube, for R, G, B \in {0, ..., 5}:
+    #                               index = 16 + R×6×6 + G×6 + B
+    #  132 - 255: grayscale 
+    #
+    # 243 107  33    #F36B21   lhOrange
+    LHORANGE=202     #FF5F00 
+    #  65 242  34    #41F222   lhGreen
+    LHGREEN=82       #5FFF00
+    #  30 174 219    #1EAEDB   lhCyan
+    LHCYAN=38        #00AFD7
+    # 211  34 242    #D322F2   lhMagenta
+    LHMAGENTA=165    #D700FF
+    # 242 211  34    #F2D322   lhGold
+    LHGOLD=220       #FFD700
+    #
+    # 156  69  22    #9C4516    lhOrangeMedium
+    LHORANGEMEDIUM=130 #AF5F00
+    #  42 156  22    #2A9C16    lhGreenMedium
+    LHGREENMEDIUM=34 #00AF00
+    #  22 109 156    #166D9C    lhCyanMedium
+    LHCYANMEDIUM=25  #0055af
+    # 135  22 156    #87169C    lhMagentaMedium
+    LHMAGENTAMEDIUM=91 #8700AF
+    # 156 135  22    #9C8716    lhGoldMedium
+    LHGOLDMEDIUM=136 #AF8700
+    #
+    #  71  31  10    #471F0A    lhOrangeDark
+    LHORANGEDARK=52  #%F0000
+    #  19  71  10    #13470A    lhGreenDark
+    LHGREENDARK=22   #005f00
+    #  10  50  71    #0A3247    lhCyanDark
+    LHCYANDARK=23    #005F5F
+    #  62  10  71    #3E0A47    lhMagentaDark
+    LHMAGENTADARK=53 #5F005F
+    #  51  86  28    #33561C    lhGoldDark
+    LHGOLDDARK=58    #5F5F00
+    #
+    # 204 204 204    #CCCCCC    lhLightGray
+    LHLIGHTGRAY=188  #D7D7D7
+    #  68  68  68    #444444    lhDarkGray
+    LHDARKGRAY=59    #5F5F5F
+    #   8   8   8    #080808    lhBlack
+    LHBLACK=232      #080808
+    # 248 248 248    #F8F8F8    lhWhite
+    LHWHITE=255      #EEEEEE
+
+else
+    LHORANGE="068"
+    LHORANGEMEDIUM="016"
+    LHDARKGRAY="019"
+    LHLIGHTGRAY="008"
+    LHCYAN="014"
+    LHGOLD="003"
+    LHGREEN="002"
+fi
+
 # Generic function for formatting the working directory - in particular,
 # it allows zpresto-style shortening of the full path.
 promptpwd() {
@@ -276,60 +334,3 @@ SEGMENT_SEPARATOR=$PL_BRARROW
 SEGMENT_SEPARATOR_SAME_COLOR=" %{$fg[$LHBLACK]%}$PL_RARROW "
 ISAVERSION=isa_version_dir
 
-if [[ "$TERM" =~ ".*256.*" ]]; then
-    #    0 -  15: System colors (color theme might define up to color 21)
-    #   16 - 231: 6x6x6 color cube, for R, G, B \in {0, ..., 5}:
-    #                               index = 16 + R×6×6 + G×6 + B
-    #  132 - 255: grayscale 
-    #
-    # 243 107  33    #F36B21   lhOrange
-    LHORANGE=202     #FF5F00 
-    #  65 242  34    #41F222   lhGreen
-    LHGREEN=82       #5FFF00
-    #  30 174 219    #1EAEDB   lhCyan
-    LHCYAN=38        #00AFD7
-    # 211  34 242    #D322F2   lhMagenta
-    LHMAGENTA=165    #D700FF
-    # 242 211  34    #F2D322   lhGold
-    LHGOLD=220       #FFD700
-    #
-    # 156  69  22    #9C4516    lhOrangeMedium
-    LHORANGEMEDIUM=130 #AF5F00
-    #  42 156  22    #2A9C16    lhGreenMedium
-    LHGREENMEDIUM=34 #00AF00
-    #  22 109 156    #166D9C    lhCyanMedium
-    LHCYANMEDIUM=25  #0055af
-    # 135  22 156    #87169C    lhMagentaMedium
-    LHMAGENTAMEDIUM=91 #8700AF
-    # 156 135  22    #9C8716    lhGoldMedium
-    LHGOLDMEDIUM=136 #AF8700
-    #
-    #  71  31  10    #471F0A    lhOrangeDark
-    LHORANGEDARK=52  #%F0000
-    #  19  71  10    #13470A    lhGreenDark
-    LHGREENDARK=22   #005f00
-    #  10  50  71    #0A3247    lhCyanDark
-    LHCYANDARK=23    #005F5F
-    #  62  10  71    #3E0A47    lhMagentaDark
-    LHMAGENTADARK=53 #5F005F
-    #  51  86  28    #33561C    lhGoldDark
-    LHGOLDDARK=58    #5F5F00
-    #
-    # 204 204 204    #CCCCCC    lhLightGray
-    LHLIGHTGRAY=188  #D7D7D7
-    #  68  68  68    #444444    lhDarkGray
-    LHDARKGRAY=59    #5F5F5F
-    #   8   8   8    #080808    lhBlack
-    LHBLACK=232      #080808
-    # 248 248 248    #F8F8F8    lhWhite
-    LHWHITE=255      #EEEEEE
-
-else
-    LHORANGE="068"
-    LHORANGEMEDIUM="016"
-    LHDARKGRAY="019"
-    LHLIGHTGRAY="008"
-    LHCYAN="014"
-    LHGOLD="003"
-    LHGREEN="002"
-fi
