@@ -33,6 +33,7 @@
 # uses changed in 2012, and older versions will display incorrectly,
 # in confusing ways.
 
+() {
 if [[ "$TERM" =~ ".*256.*" ]]; then
     #    0 -  15: System colors (color theme might define up to color 21)
     #   16 - 231: 6x6x6 color cube, for R, G, B \in {0, ..., 5}:
@@ -90,6 +91,7 @@ else
     LHGOLD="003"
     LHGREEN="002"
 fi
+}
 
 # Generic function for formatting the working directory - in particular,
 # it allows zpresto-style shortening of the full path.
