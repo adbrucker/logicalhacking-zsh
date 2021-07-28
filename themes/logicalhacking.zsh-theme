@@ -328,8 +328,8 @@ zle -N del-prompt-accept-line
 bindkey "^M" del-prompt-accept-line
 
 # Actual prompt definition
-PROMPT='%{%f%b%k%}$(build_prompt) '
-INACTIVEPROMPT='%{%f%b%k%}$(build_inactive_prompt) '
+PROMPT="%{%f%b%k%}$(build_prompt) "
+INACTIVEPROMPT="%{%f%b%k%}$(build_inactive_prompt) "
 
 # Default configuration
 SEGMENT_SEPARATOR=$PL_BRARROW
