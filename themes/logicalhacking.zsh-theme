@@ -177,7 +177,7 @@ isa_version_cmd (){
     echo `Isabelle version  | sed -e 's/:.*//' -e 's/Isabelle//'`
 }
 isa_version_dir() {
-    echo `which isabelle | sed -e 's/.*Isabelle//' -e 's/.bin.*//'`
+    echo `command -v isabelle | sed -e 's/.*Isabelle//' -e 's/.bin.*//'`
 }    
 prompt_isabelle_env() {
     ISADIR=false
